@@ -7,6 +7,7 @@ RUN sed -i '/jessie-updates/d' /etc/apt/sources.list  # Now archived
 RUN apt-get update && apt-get -y install cron \
     && apt-get -y install vim \
     && apt-get -y install jq \
+    && apt-get -y install curl \
     && mkdir -p /home/workspace
 
 ADD stup.sh /etc/init.d/stup.sh 
