@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME=/Users/jialtang/Code/monitor
+HOME=/Users/jialtang/Code/monitor/src
 
 cd $HOME
 

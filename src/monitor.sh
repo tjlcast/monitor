@@ -14,7 +14,7 @@ for file in *; do
         duration=$((end_time - start_time))
         field=$(echo $file | cut -d "." -f 2-)
         if [[ "$field" == "stream" ]]; then
-            field_value=$(echo $response | grep "data: ")
+            field_value=$(echo $response | grep "data:")
         else
             has_field_value=$(echo "$response" | jq "has(\"$field\")")
             if [ "$has_field_value" == "true" ]; then
