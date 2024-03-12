@@ -23,15 +23,15 @@ fi
 
 log_info=$($HOME/monitor.sh)
 awk -F '\n' '{print $0}' <<< "$log_info"  >> $HOME/log.log
-awk -F '\n' '{print $0}' <<< "$log_info"  | grep -i -e 'fail' -e 'CST' >> $HOME/error.log
+awk -F '\n' '{print $0}' <<< "$log_info"  | grep -i -e 'fail' -e 'CST' -e 'UTC' >> $HOME/error.log
 
 # 检查的是否开启 im 通知
 if [ -n "${im_key}" ]; then
     # 统计error.log 日志
     # 如果尾部日志中尾部6行中有出现异常，而且不全是异常时通知飞浪；
     LOG_CONTENT=$(tail -15 error.log)
-    log2=$(echo $LOG_CONTENT | awk -F 'CST' '{print $(NF-1)}')
-    log1=$(echo $LOG_CONTENT | awk -F 'CST' '{print $(NF)}')
+    log2=$(echo $LOG_CONTENT | awk -F 'CST|UTC' '{print $(NF-1)}')
+    log1=$(echo $LOG_CONTENT | awk -F 'CST|UTC' '{print $(NF)}')
 
     # 使用进程替换和awk提取Monitoring object
     var1=$(echo "$log1" | grep -oP "Monitoring object \K[^:]+(?=:)" | sort)
