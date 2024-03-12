@@ -1,0 +1,19 @@
+curl --location 'https://api.deepseek.com/v1/chat/completions' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer sk-b2747fcd2e3549d1bdaca9ce29b2f386' \
+--data '{
+  "model": "deepseek-chat",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a helpful assistant."
+    },
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ],
+  "stream": true,
+  "temperature": 0.7,
+  "max_tokens": 2048
+}'
