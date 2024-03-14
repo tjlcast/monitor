@@ -23,7 +23,7 @@ fi
 
 log_info=$($HOME/monitor.sh)
 awk -F '\n' '{print $0}' <<< "$log_info"  >> $HOME/log.log
-awk -F '\n' '{print $0}' <<< "$log_info"  | grep -i -e 'fail' -e 'CST' -e 'UTC' >> $HOME/error.log
+awk -F '\n' '{print $0}' <<< "$log_info"  | grep -e '\[FAIL\]' -e ' CST' -e ' UTC' >> $HOME/error.log
 
 # 检查的是否开启 im 通知
 if [ -n "${im_key}" ]; then
